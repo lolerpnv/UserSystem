@@ -22,7 +22,9 @@ function register($email,$username,$password)
             'salt' => $salt,
             'cost' => 10
         ];
-        $hash = password_hash($password,PASSWORD_DEFAULT,$options);
+
+        $hash = md5($password);
+        //$hash = password_hash($password,PASSWORD_DEFAULT,$options); PHP 5.5+
 
         putOnDB($email,$username,$salt,$hash);
         return "Registered";
